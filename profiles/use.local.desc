@@ -1,0 +1,3 @@
+sci-mathematics/why3:menhir - use dev-ml/menhir parsing library
+sci-mathematics/why3:gzip - use LZ compression to store session files
+sci-mathematics/why3:emacs - also compile why3.elc
