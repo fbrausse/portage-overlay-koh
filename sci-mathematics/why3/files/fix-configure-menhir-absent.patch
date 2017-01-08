@@ -1,0 +1,49 @@
+diff -ur a/configure.in b/configure.in
+--- a/configure.in      2017-01-08 21:59:19.384491838 +0100
++++ b/configure.in      2017-01-08 22:01:49.105491465 +0100
+@@ -278,9 +278,12 @@
+     fi
+ fi
+ 
+-AC_CHECK_PROG(MENHIR,menhir,menhir,no)
+-if test "$MENHIR" = no ; then
+-	AC_MSG_ERROR(Cannot find menhir.)
++if test "$enable_menhirLib" = yes; then
++    AC_CHECK_PROG(MENHIR,menhir,menhir,no)
++    if test "$MENHIR" = no ; then
++       AC_MSG_WARN(Cannot find menhir.)
++        enable_menhirLib=no
++    fi
+ fi
+ 
+ ## Where are the library we need
+@@ -421,18 +424,18 @@
+   if test "$USEOCAMLFIND" = yes; then
+      MENHIRINCLUDE=$(ocamlfind query menhirLib)
+   fi
+-  if test -n "$MENHIRINCLUDE"; then
+-     echo "ocamlfind found menhirLib in $MENHIRINCLUDE"
+-     MENHIRINCLUDE="-I $MENHIRINCLUDE"
++fi
++if test -n "$MENHIRINCLUDE"; then
++  echo "ocamlfind found menhirLib in $MENHIRINCLUDE"
++  MENHIRINCLUDE="-I $MENHIRINCLUDE"
++else
++  AC_CHECK_FILE($OCAMLLIB/menhirLib/menhirLib.cmx,,enable_menhirLib=no)
++  if test "$enable_menhirLib" = no; then
++    AC_MSG_WARN([Lib menhirLib not found, parser source files will be bigger.])
++    reason_menhirLib=" (menhirLib not found)"
+   else
+-     AC_CHECK_FILE($OCAMLLIB/menhirLib/menhirLib.cmx,,enable_menhirLib=no)
+-     if test "$enable_menhirLib" = no; then
+-        AC_MSG_WARN([Lib menhirLib not found, parser source files will be bigger.])
+-        reason_menhirLib=" (menhirLib not found)"
+-     else
+-        MENHIRINCLUDE="-I +menhirLib"
+-     fi
+-   fi
++    MENHIRINCLUDE="-I +menhirLib"
++  fi
+ fi
+ 
+ if test "$enable_menhirLib" = yes; then

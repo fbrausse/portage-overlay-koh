@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION=" Why3 is a platform for deductive program verification"
 HOMEPAGE="http://why3.lri.fr/"
@@ -30,7 +30,9 @@ DOCS=( CHANGES README Version )
 src_prepare() {
 	mv doc/why.1 doc/why3.1 || die
 	sed -i configure.in -e "s/\"pvs\"/\"sri-pvs\"/g" || die
-	sed -i configure -e "s/\"pvs\"/\"sri-pvs\"/g" || die
+	epatch "${FILESDIR}"/fix-configure-menhir-absent.patch
+	eautoconf
+#	sed -i configure -e "s/\"pvs\"/\"sri-pvs\"/g" || die
 	sed -i Makefile.in -e "s:DESTDIR =::g" \
 		-e "s:\$(RUBBER) --warn all --pdf manual.tex:makeindex manual.tex; \$(RUBBER) --warn all --pdf manual.tex; cd ..:g" || die
 }
