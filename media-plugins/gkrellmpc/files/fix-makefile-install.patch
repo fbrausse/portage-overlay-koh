@@ -1,0 +1,30 @@
+Description: Fix install makefile targets
+Author: Andrey Rahmatullin <wrar@wrar.name>
+Last-Update: 2010-12-18
+
+--- a/Makefile
++++ b/Makefile
+@@ -45,10 +45,8 @@
+ 	rm -rf dist
+ 
+ install: gkrellmpc.so
+-	if [ -d /usr/lib/gkrellm2/plugins/ -a -w /usr/lib/gkrellm2/plugins/ ]; then make install_lib; elif [ -d /usr/local/lib/gkrellm2/plugins/ -a -d /usr/local/lib/gkrellm2/plugins/ ]; then make install_local_lib; elif [ -d ~/.gkrellm2/plugins/ -a -w ~/.gkrellm2/plugins/ ]; then make install_home; else make install_instructions; fi
+-
+-install_lib: gkrellmpc.so
+-	cp gkrellmpc.so /usr/lib/gkrellm2/plugins/
++	mkdir -p $(DESTDIR)/usr/lib/gkrellm2/plugins/
++	cp gkrellmpc.so $(DESTDIR)/usr/lib/gkrellm2/plugins/
+ ifeq ($(enable_nls),1)
+ 	(cd po && ${MAKE} install)
+ endif
+--- a/po/Makefile
++++ b/po/Makefile
+@@ -6,7 +6,7 @@
+ FILES_MO:=$(FILES_PO:.po=.mo)
+ 
+ PREFIX ?= "/usr/share"
+-LOCALEDIR ?= $(PREFIX)/locale
++LOCALEDIR ?= $(DESTDIR)$(PREFIX)/locale
+ PKGNAME ?= gkrellmpc
+ 
+ .PHONY: install
