@@ -4,7 +4,7 @@ EAPI=5
 
 inherit gkrellm-plugin
 
-DESCRIPTION="Replacement for GKrellM battery meter based on /proc/acpi/battery"
+DESCRIPTION="Replacement for GKrellM battery meter based ThinkPad SMAPI"
 HOMEPAGE="http://www.100acrewood.org/~rasto/thinkbat/"
 SRC_URI="http://www.100acrewood.org/~rasto/thinkbat/${P}.tar.gz"
 LICENSE=""
