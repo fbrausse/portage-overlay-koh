@@ -21,7 +21,7 @@ DEPEND="
 	>=dev-lang/ocaml-4.02.3[ocamlopt?]
 	>=dev-ml/ocamlgraph-1.8.5[gtk?,ocamlopt?]
 	dev-ml/zarith
-	sci-mathematics/coq
+	|| ( =sci-mathematics/coq-8.4_p6 =sci-mathematics/coq-8.5* )
 	sci-mathematics/ltl2ba
 	sci-mathematics/alt-ergo
 	gtk? (
