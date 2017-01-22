@@ -18,7 +18,7 @@ IUSE="+ocamlopt gtk"
 DEPEND=">=dev-lang/ocaml-3.12.1[ocamlopt?]
 	>=dev-ml/ocamlgraph-1.8.2[gtk?,ocamlopt?]
 	dev-ml/zarith
-	gtk? ( >=x11-libs/gtksourceview-2.8 >=dev-ml/lablgtk-2.14[sourceview,ocamlopt?] )
+	gtk? ( >=dev-ml/lablgtk-2.14[sourceview,ocamlopt?] )
 	dev-ml/camlzip
 	dev-ml/ocplib-simplex"
 RDEPEND="${DEPEND}"
