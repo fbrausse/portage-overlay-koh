@@ -8,7 +8,8 @@ inherit toolchain-funcs
 
 DESCRIPTION="Evolution of Minisat"
 HOMEPAGE="http://www.labri.fr/perso/lsimon/glucose/"
-SRC_URI="http://www.labri.fr/perso/lsimon/downloads/softwares/${P}.tgz"
+NAME=syrup
+SRC_URI="http://www.labri.fr/perso/lsimon/downloads/softwares/${PN}-${NAME}.tgz"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
@@ -22,7 +23,7 @@ RDEPEND="${DEPEND}"
 #DOCS=( README )
 #PATCHES=( "${FILESDIR}"/${P}-header_fix.patch )
 
-#S=${WORKDIR}/${P}
+S=${WORKDIR}/${PN}-${NAME}
 
 src_prepare() {
 	default
