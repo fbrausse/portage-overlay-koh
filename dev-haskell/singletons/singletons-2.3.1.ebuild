@@ -21,7 +21,7 @@ RESTRICT=test # fails tests base/kinds collisison
 
 RDEPEND=">=dev-haskell/mtl-2.1.2:=[profile?]
 	>=dev-haskell/syb-0.4:=[profile?]
-	>=dev-haskell/test-1.2:=[profile?]
+	>=dev-haskell/text-1.2:=[profile?]
 	>=dev-haskell/th-desugar-1.7:=[profile?] <dev-haskell/th-desugar-1.8:=[profile?]
 	>=dev-lang/ghc-8.2.1:=
 "
