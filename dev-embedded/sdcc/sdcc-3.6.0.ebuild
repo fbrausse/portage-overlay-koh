@@ -114,6 +114,8 @@ src_install() {
 		dohtml -r *
 	fi
 
+	mv -v "${D}"/usr/share/info/bfd.info "${D}"/usr/share/info/sdcc-bfd.info
+
 	# a bunch of archives (*.a) are built & installed by gputils
 	# for PIC processors, but they do not work with standard `ar`
 	# & `scanelf` utils and they're not for the host.
