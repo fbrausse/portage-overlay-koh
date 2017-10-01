@@ -20,7 +20,7 @@ DEPEND=">=dev-lang/ocaml-3.12.1
 	coq? ( || (
 		=sci-mathematics/coq-8.4*
 		=sci-mathematics/coq-8.5*
-		=sci-mathematics/coq-8.6*
+		=sci-mathematics/coq-8.6
 	) )
 	frama-c? ( =sci-mathematics/frama-c-20150201 )
 	float? ( >=sci-mathematics/flocq-2.5 )
