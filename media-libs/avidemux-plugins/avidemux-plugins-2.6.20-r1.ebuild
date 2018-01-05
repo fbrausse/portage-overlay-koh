@@ -1,5 +1,8 @@
 # Copyright 1999-2017 Gentoo Foundation
+# Copyright 2017-2018 Franz Brausse
 # Distributed under the terms of the GNU General Public License v2
+#
+# 20180105: remove obsolete media-libs/avidemux[qt4?] dependency
 
 EAPI="6"
 
@@ -30,7 +33,7 @@ fi
 
 RDEPEND="
 	~media-libs/avidemux-core-${PV}:${SLOT}[vdpau?]
-	~media-video/avidemux-${PV}:${SLOT}[opengl?,qt4?,qt5?]
+	~media-video/avidemux-${PV}:${SLOT}[opengl?,qt5?]
 	>=dev-lang/spidermonkey-1.5-r2:0=
 	dev-libs/libxml2:2
 	media-libs/a52dec:0
