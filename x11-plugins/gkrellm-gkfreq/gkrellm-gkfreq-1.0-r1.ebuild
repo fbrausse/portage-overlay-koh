@@ -1,8 +1,11 @@
 # Copyright 1999-2007 Gentoo Foundation
+# Copyright 2017-2018 Franz Brausse
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/gkrellm-gkfreq/gkrellm-gkfreq-1.0.ebuild,v 1.6 2007/07/11 20:39:22 mr_bones_ Exp $
+#
+# 20180105: update to EAPI=6
 
-EAPI="3"
+EAPI=6
+
 inherit gkrellm-plugin eutils
 
 DESCRIPTION="Displays CPU's current speed in gkrellm2"
@@ -14,8 +17,8 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-PLUGIN_SO=gkfreq.so
+PLUGIN_SO=( gkfreq.so )
 
-src_prepare() {
-	epatch "${FILESDIR}/${P}-gdk_string_width.patch"
-}
+PATCHES=(
+	"${FILESDIR}/${P}-gdk_string_width.patch"
+)
