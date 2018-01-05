@@ -16,7 +16,7 @@ HOMEPAGE="http://fixounet.free.fr/avidemux"
 # Multiple licenses because of all the bundled stuff.
 LICENSE="GPL-1 GPL-2 MIT PSF-2 public-domain"
 SLOT="2.6"
-IUSE="aac aften a52 alsa amr dcaenc debug dts fdk fontconfig fribidi jack lame libsamplerate cpu_flags_x86_mmx opengl nvenc opus oss pulseaudio qt4 qt5 vorbis truetype twolame xv xvid x264 x265 vdpau vpx"
+IUSE="aac aften a52 alsa amr dcaenc debug dts fdk fontconfig fribidi jack lame libsamplerate cpu_flags_x86_mmx opengl nvenc opus oss pulseaudio qt5 vorbis truetype twolame xv xvid x264 x265 vdpau vpx"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 if [[ ${PV} == *9999* ]] ; then
@@ -94,7 +94,6 @@ src_prepare() {
 
 	processes="buildPluginsCommon:avidemux_plugins
 		buildPluginsCLI:avidemux_plugins"
-	use qt4 && processes+=" buildPluginsQt4:avidemux_plugins"
 
 	for process in ${processes} ; do
 		CMAKE_USE_DIR="${S}"/${process#*:} cmake-utils_src_prepare
@@ -132,7 +131,7 @@ src_configure() {
 			-DOPUS="$(usex opus)"
 			-DOSS="$(usex oss)"
 			-DPULSEAUDIOSIMPLE="$(usex pulseaudio)"
-			-DQT4="$(usex qt4)"
+			-DQT4=OFF
 			-DFREETYPE2="$(usex truetype)"
 			-DTWOLAME="$(usex twolame)"
 			-DX264="$(usex x264)"
