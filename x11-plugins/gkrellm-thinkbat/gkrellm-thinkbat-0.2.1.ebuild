@@ -1,6 +1,8 @@
-# Copyright 2017 Franz Brausse
+# Copyright 2017-2018 Franz Brausse
+#
+# 20180105: update to EAPI=6
 
-EAPI=5
+EAPI=6
 
 inherit gkrellm-plugin
 
@@ -9,12 +11,10 @@ HOMEPAGE="http://www.100acrewood.org/~rasto/thinkbat/"
 SRC_URI="http://www.100acrewood.org/~rasto/thinkbat/${P}.tar.gz"
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
-DEPEND="app-laptop/tp_smapi"
-RDPEND="${DEPEND}"
-
-src_install() {
-	gkrellm-plugin_src_install
-}
+RDEPEND="
+	app-admin/gkrellm:2[X]
+	app-laptop/tp_smapi"
+DEPEND="${RDEPEND}"
