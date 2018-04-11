@@ -15,12 +15,11 @@ SRC_URI="http://${PN}.inria.fr/distrib/V${MY_PV}/files/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="gtk debug +ocamlopt doc camlp5"
+IUSE="gtk debug +ocamlopt doc"
 
 RDEPEND="
 	>=dev-lang/ocaml-3.11.2:=[ocamlopt?]
-	camlp5? ( >=dev-ml/camlp5-6.02.3:=[ocamlopt?] )
-	!camlp5? ( dev-ml/camlp4:= )
+	>=dev-ml/camlp5-6.02.3:=[ocamlopt?]
 	gtk? ( >=dev-ml/lablgtk-2.10.1:=[sourceview,ocamlopt?] )"
 DEPEND="${RDEPEND}
 	dev-ml/findlib
@@ -66,19 +65,17 @@ src_configure() {
 
 	use ocamlopt || myconf+=( -byte-only )
 
-	if use camlp5; then
-		myconf+=( -usecamlp5 -camlp5dir ${ocaml_lib}/camlp5 )
-	else
-		myconf+=( -usecamlp4 )
-	fi
+	myconf+=( -camlp5dir ${ocaml_lib}/camlp5 )
 
 	export CAML_LD_LIBRARY_PATH="${S}/kernel/byterun/"
 	./configure ${myconf[@]} || die "configure failed"
 }
 
 src_compile() {
-	emake STRIP="true" world VERBOSE=1
-	use doc && emake STRIP="true" doc-html VERBOSE=1
+	local tgts=( world )
+	use ocamlopt || tgts+=( byte )
+	use doc && tgts+=( doc-html )
+	emake STRIP="true" "${tgts[@]}" VERBOSE=1
 }
 
 src_test() {
@@ -86,8 +83,10 @@ src_test() {
 }
 
 src_install() {
-	emake STRIP="true" COQINSTALLPREFIX="${D}" install VERBOSE=1
-	use doc && emake STRIP="true" COQINSTALLPREFIX="${D}" install-doc-html VERBOSE=1
+	local tgts=( install )
+	use ocamlopt || tgts+=( install-byte )
+	use doc && tgts+=( install-doc-html )
+	emake STRIP="true" COQINSTALLPREFIX="${D}" "${tgts[@]}" VERBOSE=1
 	dodoc README.md CREDITS CHANGES
 
 	use gtk && make_desktop_entry "coqide" "Coq IDE" "${EPREFIX}/usr/share/coq/coq.png"
