@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="Alt-Ergo is an automatic theorem prover"
 HOMEPAGE="http://alt-ergo.ocamlpro.com"
-SRC_URI="http://dev.gentoo.org/~jauhien/distfiles/${P}.tar.gz"
+SRC_URI="https://alt-ergo.ocamlpro.com/http/${P}/${P}.tar.gz"
 
 LICENSE="CeCILL-C"
 SLOT="0"
