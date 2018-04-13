@@ -13,7 +13,7 @@ HOMEPAGE="http://coq.inria.fr/"
 SRC_URI="http://${PN}.inria.fr/distrib/V${MY_PV}/files/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0/8.7.2"
+SLOT="0/${PV}"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="gtk debug +ocamlopt doc"
 
