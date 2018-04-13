@@ -1,0 +1,18 @@
+--- a/Makefile.in	2018-04-13 18:24:43.589981850 +0200
++++ b/Makefile.in	2018-04-13 18:25:20.943982892 +0200
+@@ -17,7 +17,6 @@
+ # prefix=@prefix@
+ # exec_prefix=@exec_prefix@
+ # BINDIR=$(DESTDIR)@bindir@
+-LIBDIR=$(DESTDIR)/lib/
+ # DATADIR=$(DESTDIR)@datadir@/ocplib-simplex
+ 
+ # where to install the man page
+@@ -112,7 +111,6 @@
+ ##############
+ 
+ install: all META
+-	OCAMLFIND_DESTDIR=$(LIBDIR) \
+ 	  ocamlfind install ocplib-simplex src/$(LIBNAME).* src/*.mli META
+ 
+ 
