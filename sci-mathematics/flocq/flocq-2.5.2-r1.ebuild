@@ -4,6 +4,8 @@
 
 EAPI="5"
 
+inherit multiprocessing
+
 DESCRIPTION="A floating-point formalization for the Coq system"
 HOMEPAGE="http://flocq.gforge.inria.fr/"
 SRC_URI="https://gforge.inria.fr/frs/download.php/36199/${P}.tar.gz"
@@ -13,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/coq"
+DEPEND="sci-mathematics/coq:="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
@@ -27,7 +29,7 @@ src_configure() {
 }
 
 src_compile() {
-	./remake || die "emake failed"
+	./remake -j$(makeopts_jobs) || die "emake failed"
 }
 
 src_install() {
