@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI="6"
 
-inherit multiprocessing
+inherit remake
 
 DESCRIPTION="A floating-point formalization for the Coq system"
 HOMEPAGE="http://flocq.gforge.inria.fr/"
@@ -20,21 +20,6 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	sed -i Remakefile.in \
-		-e "s:mkdir -p @libdir@:mkdir -p \${DESTDIR}@libdir@:g" \
-		-e "s:cp \$f @libdir@:cp \$f \${DESTDIR}@libdir@:g"
-}
+DOCS=( NEWS.md README.md AUTHORS ChangeLog )
 
-src_configure() {
-	econf --libdir="`coqc -where`/user-contrib/Flocq"
-}
-
-src_compile() {
-	./remake -j$(makeopts_jobs) || die "emake failed"
-}
-
-src_install() {
-	DESTDIR="${D}" ./remake install || die
-	dodoc NEWS.md README.md AUTHORS ChangeLog
-}
+COQPN="Flocq"
