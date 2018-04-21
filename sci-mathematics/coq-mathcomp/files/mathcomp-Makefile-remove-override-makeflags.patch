@@ -1,0 +1,25 @@
+diff -urw a b
+--- a/mathcomp/Makefile	2018-04-21 11:56:40.974408823 +0200
++++ b/mathcomp/Makefile	2018-04-21 11:57:23.365410006 +0200
+@@ -15,19 +15,16 @@
+ COQDEP=$(COQBIN)coqdep
+ endif
+ 
+-OLD_MAKEFLAGS:=$(MAKEFLAGS)
+-MAKEFLAGS+=-B
+-
+ .DEFAULT_GOAL := all
+ 
+ %:
+ 	$(H)[ -e Makefile.coq ] || $(call coqmakefile,ssreflect)
+ 	# Override COQDEP to find only the "right" copy .ml files
+-	$(H)MAKEFLAGS="$(OLD_MAKEFLAGS)" $(MAKE) --no-print-directory \
++	$(H)$(MAKE) --no-print-directory \
+ 		-f Makefile.coq $* \
+ 		COQDEP='$(COQDEP) -exclude-dir plugin -c'
+ 
+ clean:
+-	$(H)MAKEFLAGS="$(OLD_MAKEFLAGS)" $(MAKE) --no-print-directory \
++	$(H)$(MAKE) --no-print-directory \
+ 		-f Makefile.coq clean
+ 	$(H)rm -f Makefile.coq
