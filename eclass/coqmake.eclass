@@ -6,17 +6,20 @@
 
 EXPORT_FUNCTIONS src_compile src_install
 
+coqmake_emake() {
+	emake VERBOSE=1 DSTROOT="${D}" "$@"
+}
+
 coqmake_src_compile() {
-        local tgt
-        if use ocamlopt; then tgt=opt; else tgt=byte; fi
-        emake VERBOSE=1 "${tgt}"
-        use doc && emake VERBOSE=1 gallinahtml
+	local tgt
+	if use ocamlopt; then tgt=opt; else tgt=byte; fi
+	coqmake_emake "${tgt}"
+	use doc && emake VERBOSE=1 gallinahtml
 }
 
 coqmake_src_install() {
-        tgts=( install )
-        use doc && tgts+=( install-doc )
-        emake VERBOSE=1 DSTROOT="${D}" "${tgts[@]}"
-        dodoc README.md
+	tgts=( install )
+	use doc && tgts+=( install-doc )
+	coqmake_emake "${tgts[@]}"
+	einstalldocs
 }
-
