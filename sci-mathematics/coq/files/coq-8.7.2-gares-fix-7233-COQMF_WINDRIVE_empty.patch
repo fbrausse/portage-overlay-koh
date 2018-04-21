@@ -1,0 +1,32 @@
+commit 46a9d3a4430dc262f78596b4030d6195194c6aee
+Author: Enrico Tassi <Enrico.Tassi@inria.fr>
+Date:   Fri Apr 13 14:45:13 2018 +0200
+
+    [coq_makefile] COQMF_WINDRIVE is empty on linux (fix #7233)
+
+diff --git a/tools/CoqMakefile.in b/tools/CoqMakefile.in
+index f6539d8..017c86c 100644
+--- a/tools/CoqMakefile.in
++++ b/tools/CoqMakefile.in
+@@ -227,7 +227,7 @@ ifdef DSTROOT
+ DESTDIR := $(DSTROOT)
+ endif
+ 
+-concat_path = $(if $(1),$(1)/$(subst $(COQMF_WINDRIVE),/,$(2)),$(2))
++concat_path = $(if $(1),$(1)/$(if $(COQMF_WINDRIVE),$(subst $(COQMF_WINDRIVE),/,$(2)),$(2)),$(2))
+ 
+ COQLIBINSTALL = $(call concat_path,$(DESTDIR),$(COQLIB)user-contrib)
+ COQDOCINSTALL = $(call concat_path,$(DESTDIR),$(DOCDIR)user-contrib)
+diff --git a/tools/coq_makefile.ml b/tools/coq_makefile.ml
+index 6cd520d..6f11ee3 100644
+--- a/tools/coq_makefile.ml
++++ b/tools/coq_makefile.ml
+@@ -215,7 +215,7 @@ let generate_conf_includes oc { ml_includes; r_includes; q_includes } =
+ let windrive s =
+   if Coq_config.arch_is_win32 && Str.(string_match (regexp "^[a-zA-Z]:") s 0)
+   then Str.matched_string s
+-  else s
++  else ""
+ ;;
+ 
+ let generate_conf_coq_config oc args =

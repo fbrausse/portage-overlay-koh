@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
 inherit eutils multilib
 
@@ -35,6 +35,16 @@ DEPEND="${RDEPEND}
 		)"
 
 S=${WORKDIR}/${MY_P}
+
+DOCS=(
+	README.md
+	CREDITS
+	CHANGES
+)
+
+PATCHES=(
+	"${FILESDIR}/${P}-gares-fix-7233-COQMF_WINDRIVE_empty.patch"
+)
 
 src_configure() {
 	ocaml_lib=$(ocamlc -where)
@@ -87,7 +97,7 @@ src_install() {
 	use ocamlopt || tgts+=( install-byte )
 	use doc && tgts+=( install-doc-html )
 	emake STRIP="true" COQINSTALLPREFIX="${D}" "${tgts[@]}" VERBOSE=1
-	dodoc README.md CREDITS CHANGES
+	einstalldocs
 
 	use gtk && make_desktop_entry "coqide" "Coq IDE" "${EPREFIX}/usr/share/coq/coq.png"
 }
