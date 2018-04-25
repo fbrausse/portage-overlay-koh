@@ -1,2 +1,5 @@
 # masked due to build errors
 =sci-mathematics/frama-c-20150201
+
+# masked due to need for testing and as-of-yet missing USE=doc support
+=sci-mathematics/coq-8.8.0
