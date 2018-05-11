@@ -17,7 +17,7 @@ IUSE="+ocamlopt"
 
 DEPEND="
 	>=sci-mathematics/coq-8.7:=[ocamlopt?] <sci-mathematics/coq-8.9:=[ocamlopt?]
-	>=sci-mathematics/flocq-3.0[ocamlopt?]
+	>=sci-mathematics/flocq-3.0
 	>=sci-mathematics/coq-mathcomp-1.6:=[ocamlopt?]
 	>=sci-mathematics/coquelicot-3.0[ocamlopt?]
 	sci-mathematics/coq-bignums[ocamlopt?]
