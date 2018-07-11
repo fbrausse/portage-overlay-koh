@@ -30,7 +30,7 @@ RDEPEND="${DEPEND}"
 #}
 src_compile(){
 	emake || die "emake failed"
-	use gtk && emake gui || die "emake gui failed"
+	use gtk && { emake gui || die "emake gui failed"; }
 }
 
 src_install(){
