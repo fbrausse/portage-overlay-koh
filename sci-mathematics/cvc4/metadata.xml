@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="project">
+    <email>brausse@informatik.uni-trier.de</email>
+    <name>Franz Brauße</name>
+  </maintainer>
+  <longdescription>
+    CVC4 is an efficient open-source automatic theorem prover for satisfiability modulo theories (SMT) problems.
+  </longdescription>
+  <use>
+    <flag name="cln">Use CLN library instead of GMP for MP arithmetic.</flag>
+    <flag name="swig">Adds Swig support.</flag>
+  </use>
+</pkgmetadata>
