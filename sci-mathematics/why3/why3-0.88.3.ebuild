@@ -24,7 +24,7 @@ DEPEND=">=dev-lang/ocaml-3.12.1
 		=sci-mathematics/coq-8.7*:=
 	) )
 	frama-c? ( =sci-mathematics/frama-c-20150201 )
-	float? ( >=sci-mathematics/flocq-2.5 )
+	float? ( >=sci-mathematics/flocq-2.5:= <sci-mathematics/flocq-3:= )
 	doc? ( dev-tex/rubber )
 	menhir? ( >=dev-ml/menhir-20161115 )
 	gzip? ( dev-ml/camlzip )"

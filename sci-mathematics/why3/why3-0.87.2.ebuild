@@ -19,7 +19,7 @@ DEPEND=">=dev-lang/ocaml-3.12.1
 	dev-ml/zarith
 	sci-mathematics/coq
 	frama-c? ( >=sci-mathematics/frama-c-20140301 )
-	float? ( sci-mathematics/flocq )
+	float? ( >=sci-mathematics/flocq-2.5:= <sci-mathematics/flocq-3:= )
 	doc? ( dev-tex/rubber )
 	>=dev-ml/menhir-20161115"
 RDEPEND="${DEPEND}"
