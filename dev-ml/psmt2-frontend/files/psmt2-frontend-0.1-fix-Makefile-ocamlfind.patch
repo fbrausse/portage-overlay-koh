@@ -1,0 +1,20 @@
+diff --git a/Makefile.in b/Makefile.in
+index b6fa6fe..ac5110d 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -17,7 +17,6 @@ DESTDIR=@prefix@
+ # prefix=@prefix@
+ # exec_prefix=@exec_prefix@
+ # BINDIR=$(DESTDIR)@bindir@
+-LIBDIR=$(DESTDIR)/lib/
+ # DATADIR=$(DESTDIR)@datadir@/psmt2-frontend
+ 
+ # where to install the man page
+@@ -118,7 +117,6 @@ META: config.status
+ ##############
+ 
+ install: all META
+-	OCAMLFIND_DESTDIR=$(LIBDIR) \
+ 	  ocamlfind install psmt2-frontend src/$(LIBNAME).* src/*.mli META
+ 
+ 
