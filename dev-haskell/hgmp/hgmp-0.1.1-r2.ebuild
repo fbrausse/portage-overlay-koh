@@ -18,9 +18,19 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-        >=dev-lang/ghc-7.6.1:= <dev-lang/ghc-8.5:=
+        >=dev-lang/ghc-7.10.1:= <dev-lang/ghc-8.5:=
 "
 DEPEND="${RDEPEND}
-        test? ( >=dev-haskell/hspec-1.3
-                >=dev-haskell/hunit-1.2 )
+	>=dev-haskell/cabal-1.22.2.0
+	test? ( >=dev-haskell/quickcheck-2.8 <dev-haskell/quickcheck-2.13 )
 "
+
+HACKAGE_REV=3
+
+src_prepare() {
+	# idea from <https://github.com/gentoo-haskell/gentoo-haskell/issues/861#issuecomment-428454736>
+	# but less intrusive
+	rm ${S}/${PN}.cabal || die
+	cp ${FILESDIR}/hackage-rev-${HACKAGE_REV}.cabal ${S}/${PN}.cabal || die
+	default
+}
