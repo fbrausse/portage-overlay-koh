@@ -3,7 +3,7 @@
 
 EAPI=6
 
-CABAL_FEATURES="profile haddock hoogle hscolour"
+CABAL_FEATURES="lib profile haddock hoogle hscolour"
 inherit haskell-cabal
 
 DESCRIPTION="Haskell package providing a LongDouble type"
@@ -17,4 +17,6 @@ KEYWORDS="~amd64 ~x86"
 RDEPEND="
         >=dev-lang/ghc-7.6.1:= <dev-lang/ghc-8.5:=
 "
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	>=dev-haskell/cabal-1.22.2.0
+"
