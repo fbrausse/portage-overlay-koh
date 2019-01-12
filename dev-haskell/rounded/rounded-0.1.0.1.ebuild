@@ -3,7 +3,7 @@
 
 EAPI=6
 
-CABAL_FEATURES="profile haddock hoogle hscolour"
+CABAL_FEATURES="lib profile haddock hoogle hscolour"
 inherit haskell-cabal
 
 DESCRIPTION="Haskell interface library to MPFR"
