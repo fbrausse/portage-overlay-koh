@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>haskell@gentoo.org</email>
+		<name>Gentoo Haskell</name>
+	</maintainer>
+	<longdescription>
+		* @class Countable@, for countable types
+		
+		* @class AtLeastOneCountable@, for countable types that have at least one value
+		
+		* @class InfiniteCountable@, for infinite countable types
+		
+		* @class Searchable@, for types that can be searched over. This turns out to include some infinite types, see &lt;http://math.andrej.com/2007/09/28/seemingly-impossible-functional-programs/&gt;.
+		
+		* @class Finite@, for finite types
+		
+		* @class Empty@, for empty types
+		
+		* @data Nothing@, an empty type
+		
+		Some orphan instances:
+		
+		* @(Searchable a,Eq b) =&gt; Eq (a -&gt; b)@ / /
+		
+		* @(Finite t) =&gt; Foldable ((-&gt;) t)@ / /
+		
+		* @(Finite a) =&gt; Traversable ((-&gt;) a)@ / /
+		
+		* @(Show a,Finite a,Show b) =&gt; Show (a -&gt; b)@ / /
+	</longdescription>
+</pkgmetadata>
