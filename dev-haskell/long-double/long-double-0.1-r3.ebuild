@@ -20,3 +20,13 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-haskell/cabal-1.22.2.0
 "
+
+HACKAGE_REV=1
+
+src_prepare() {
+	# idea from <https://github.com/gentoo-haskell/gentoo-haskell/issues/861#issuecomment-428454736>
+	# but less intrusive
+	rm ${S}/${PN}.cabal || die
+	cp ${FILESDIR}/hackage-rev-${HACKAGE_REV}.cabal ${S}/${PN}.cabal || die
+	default
+}
