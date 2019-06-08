@@ -10,7 +10,7 @@
 # @DESCRIPTION: Name of the package in Coq's user-contrib directory
 
 # for makeopts_jobs
-inherit multiprocessing
+inherit multiprocessing eutils
 
 IUSE="doc"
 
