@@ -5,7 +5,7 @@ EAPI="6"
 inherit coqmake
 
 DESCRIPTION="The Mathematical Components Library is an extensive and coherent repository of formalized mathematical theories."
-HOMEPAGE="http://coquelicot.saclay.inria.fr/"
+HOMEPAGE="http://math-comp.github.io/math-comp/"
 SRC_URI="https://github.com/math-comp/math-comp/archive/mathcomp-${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="CeCILL-B"
