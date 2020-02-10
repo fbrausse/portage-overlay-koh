@@ -22,5 +22,13 @@ src_configure() {
 		-DLIBPOLY_BUILD_STATIC=$(usex static-libs ON OFF)
 		-DLIBPOLY_BUILD_PYTHON_API=$(usex python ON OFF)
 	)
-	cmake-utils_src_configure
+	cmake-utils_src_configure "$@"
+}
+
+src_install() {
+	cmake-utils_src_install "$@"
+
+	# <https://bugs.gentoo.org/628362#c7>
+	# Do not violate multilib strict
+	mv "${ED}/usr/lib" "${ED}/usr/$(get_libdir)" || die "mv failed"
 }
