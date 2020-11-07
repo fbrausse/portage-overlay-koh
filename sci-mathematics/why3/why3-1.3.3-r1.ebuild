@@ -21,6 +21,7 @@ REQUIRED_USE="float? ( coq )"
 
 DEPEND=">=dev-lang/ocaml-4.02.3
 	dev-ml/zarith
+	dev-ml/seq:=
 	coq? ( >=sci-mathematics/coq-8.5:= <sci-mathematics/coq-8.13:= )
 	frama-c? ( =sci-mathematics/frama-c-20171101:= )
 	float? ( >=sci-mathematics/flocq-3.1:= )
