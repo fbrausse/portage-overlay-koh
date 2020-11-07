@@ -20,6 +20,6 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-DOCS=( NEWS.md README.md AUTHORS ChangeLog )
+DOCS=( NEWS.md README.md AUTHORS )
 
 COQPN="Flocq"
