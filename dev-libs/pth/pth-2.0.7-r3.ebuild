@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=4
+EAPI=6
 
 inherit eutils fixheadtails libtool flag-o-matic
 
@@ -20,17 +20,20 @@ RDEPEND="${DEPEND}"
 
 DOCS="ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
-	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
-	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
-	epatch "${FILESDIR}"/${PN}-2.0.7-parallel-install.patch
-	epatch "${FILESDIR}"/${PN}-2.0.7-ia64.patch
-	epatch "${FILESDIR}"/${PN}-2.0.7-kernel-3.patch
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
+	"${FILESDIR}"/${PN}-2.0.6-ldflags.patch
+	"${FILESDIR}"/${PN}-2.0.6-sigstack.patch
+	"${FILESDIR}"/${PN}-2.0.7-parallel-install.patch
+	"${FILESDIR}"/${PN}-2.0.7-ia64.patch
+	"${FILESDIR}"/${PN}-2.0.7-kernel-3.patch
+)
 
+src_prepare() {
 	ht_fix_file aclocal.m4 configure
 
 	elibtoolize
+	default
 }
 
 src_configure() {
