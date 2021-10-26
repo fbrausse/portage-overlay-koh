@@ -33,7 +33,7 @@ DEPEND="
 		|| ( <dev-ml/ocamlgraph-2[gtk,ocamlopt?] >=dev-ml/ocamlgraph_gtk-2[ocamlopt?] )
 	)
 	gmp? ( dev-ml/gmp-ocaml )
-	why3? ( >=sci-mathematics/why3-1.4.0[ocamlopt?] )
+	why3? ( >=sci-mathematics/why3-1.4.0[lib,ocamlopt?] )
 "
 RDEPEND="${DEPEND}"
 
