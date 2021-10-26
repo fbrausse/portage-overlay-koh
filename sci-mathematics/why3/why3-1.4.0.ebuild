@@ -13,7 +13,7 @@ SRC_URI="https://why3.gitlabpages.inria.fr/releases/${P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="float frama-c doc examples emacs gzip coq alt-ergo isabelle gtk lib"
+IUSE="float frama-c doc examples emacs gzip coq alt-ergo isabelle gtk lib +ocamlopt"
 
 REQUIRED_USE="float? ( coq )"
 
