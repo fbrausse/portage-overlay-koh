@@ -1,0 +1,17 @@
+diff -urw a/cmake/FindGMP.cmake b/cmake/FindGMP.cmake
+--- a/cmake/FindGMP.cmake	2022-01-28 21:34:14.000000000 +0100
++++ b/cmake/FindGMP.cmake	2022-01-31 09:16:12.687627668 +0100
+@@ -17,7 +17,12 @@
+ 
+ include(deps-helper)
+ 
+-find_path(GMP_INCLUDE_DIR NAMES gmp.h gmpxx.h)
++
++execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
++                OUTPUT_VARIABLE CXX_MACHTYPE OUTPUT_STRIP_TRAILING_WHITESPACE
++                ERROR_QUIET)
++
++find_path(GMP_INCLUDE_DIR NAMES gmp.h gmpxx.h PATH_SUFFIXES ${CXX_MACHTYPE} "")
+ find_library(GMP_LIBRARIES NAMES gmp)
+ 
+ set(GMP_FOUND_SYSTEM FALSE)

@@ -1,0 +1,41 @@
+diff --git a/cmake/FindANTLR3.cmake b/cmake/FindANTLR3.cmake
+index a1812e6..8c07d86 100644
+--- a/cmake/FindANTLR3.cmake
++++ b/cmake/FindANTLR3.cmake
+@@ -18,16 +18,21 @@
+ 
+ include(deps-helper)
+ 
++execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
++                OUTPUT_VARIABLE CXX_MACHTYPE OUTPUT_STRIP_TRAILING_WHITESPACE
++                ERROR_QUIET)
++
+ find_file(ANTLR3_JAR NAMES antlr-3.4-complete.jar PATH_SUFFIXES share/java/)
+ find_path(ANTLR3_INCLUDE_DIR NAMES antlr3.h)
++find_path(ANTLR3_CONFIG_INCLUDE_DIR NAMES antlr3config.h PATH_SUFFIXES ${CXX_MACHTYPE} "")
+ find_library(ANTLR3_LIBRARIES NAMES antlr3c)
+ 
+ set(ANTLR3_FOUND_SYSTEM FALSE)
+-if(ANTLR3_JAR AND ANTLR3_INCLUDE_DIR AND ANTLR3_LIBRARIES)
++if((ANTLR3_COMMAND OR ANTLR3_JAR) AND ANTLR3_INCLUDE_DIR AND ANTLR3_CONFIG_INCLUDE_DIR AND ANTLR3_LIBRARIES)
+     set(ANTLR3_FOUND_SYSTEM TRUE)
+ 
+     # Parse ANTLR3 version
+-    file(STRINGS "${ANTLR3_INCLUDE_DIR}/antlr3config.h" ANTLR3_VERSION REGEX "^#define VERSION \"[0-9.]+\"")
++    file(STRINGS "${ANTLR3_CONFIG_INCLUDE_DIR}/antlr3config.h" ANTLR3_VERSION REGEX "^#define VERSION \"[0-9.]+\"")
+     string(REGEX MATCH "[0-9.]+" ANTLR3_VERSION "${ANTLR3_VERSION}")
+ 
+     check_system_version("ANTLR3")
+@@ -148,8 +148,10 @@ set(ANTLR3_FOUND TRUE)
+ # This may not be a single binary: the EP has a whole commandline
+ # We thus do not make this an executable target.
+ # Just call ${ANTLR3_COMMAND} instead.
+-set(ANTLR3_COMMAND ${Java_JAVA_EXECUTABLE} -cp "${ANTLR3_JAR}" org.antlr.Tool
+-    CACHE STRING "run ANTLR3" FORCE)
++if(NOT ANTLR3_COMMAND)
++  set(ANTLR3_COMMAND ${Java_JAVA_EXECUTABLE} -cp "${ANTLR3_JAR}" org.antlr.Tool
++      CACHE STRING "run ANTLR3" FORCE)
++endif()
+ 
+ add_library(ANTLR3 STATIC IMPORTED GLOBAL)
+ set_target_properties(ANTLR3 PROPERTIES
