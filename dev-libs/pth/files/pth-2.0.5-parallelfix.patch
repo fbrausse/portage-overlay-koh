@@ -1,5 +1,5 @@
---- Makefile.in.orig	2005-11-08 05:58:55.000000000 +1100
-+++ Makefile.in	2005-11-08 06:29:02.000000000 +1100
+--- a/Makefile.in	2005-11-08 05:58:55.000000000 +1100
++++ b/Makefile.in	2005-11-08 06:29:02.000000000 +1100
 @@ -148,10 +148,9 @@
  
  #   be aware of libtool when building the objects
