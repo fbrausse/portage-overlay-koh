@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python3_{7,8,9} )
 inherit cmake python-any-r1
 
 DESCRIPTION="Automatic theorem prover for satisfiability modulo theories (SMT) problems"
-HOMEPAGE="https://cvc4.github.io/"
+HOMEPAGE="https://cvc5.github.io/"
 SRC_URI="https://github.com/cvc5/cvc5/archive/refs/tags/${P}.tar.gz
          https://github.com/martin-cs/symfpu/archive/refs/heads/CVC4.tar.gz -> SymFPU.tar.gz"
 
