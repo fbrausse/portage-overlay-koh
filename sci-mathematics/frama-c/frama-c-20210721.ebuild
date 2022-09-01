@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI="6"
 
 inherit autotools eutils
 
@@ -20,7 +20,6 @@ RESTRICT="strip"
 
 DEPEND="
 	>=dev-lang/ocaml-4.02.3[ocamlopt?]
-	>=dev-ml/ocamlgraph-1.8.5[gtk?,ocamlopt?]
 	>=dev-ml/zarith-1.5[ocamlopt?]
 	>=dev-ml/yojson-1.4.1[ocamlopt?]
 	coq? ( >=sci-mathematics/coq-8.5[ocamlopt?] <sci-mathematics/coq-8.8[ocamlopt?] )
@@ -69,6 +68,6 @@ src_install(){
 	default
 
 	if use doc; then
-		dohtml -A svg -r doc/frama-c-api/*
+		dodoc -r doc/frama-c-api/*
 	fi
 }
