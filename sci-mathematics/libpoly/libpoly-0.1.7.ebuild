@@ -1,9 +1,9 @@
 # Copyright 2017 Franz Brausse <brausse@informatik.uni-trier.de>
 #
 
-EAPI=6
+EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="LibPoly is a C library for manipulating polynomials."
 HOMEPAGE="https://github.com/SRI-CSL/${PN}"
@@ -22,11 +22,11 @@ src_configure() {
 		-DLIBPOLY_BUILD_STATIC=$(usex static-libs ON OFF)
 		-DLIBPOLY_BUILD_PYTHON_API=$(usex python ON OFF)
 	)
-	cmake-utils_src_configure "$@"
+	cmake_src_configure "$@"
 }
 
 src_install() {
-	cmake-utils_src_install "$@"
+	cmake_src_install "$@"
 
 	# <https://bugs.gentoo.org/628362#c7>
 	# Do not violate multilib strict
