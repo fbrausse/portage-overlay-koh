@@ -1,0 +1,11 @@
+--- /var/db/repos/gentoo/sci-mathematics/cadical/cadical-1.5.2-r1.ebuild	2021-12-28 19:09:45.000000000 +0100
++++ cadical-1.5.2-r1.ebuild	2022-01-31 10:15:11.118143572 +0100
+@@ -20,7 +20,7 @@
+ 
+ src_configure() {
+ 	tc-export AR
+-	CXX="$(tc-getCXX)" CXXFLAGS="${CXXFLAGS} ${LDFLAGS}" ./configure || die
++	CXX="$(tc-getCXX)" CXXFLAGS="${CXXFLAGS} ${LDFLAGS} -fPIC" ./configure || die
+ }
+ 
+ src_install() {
