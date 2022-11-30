@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d7a1205..ac74aff 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -14,7 +14,7 @@ option(LIBPOLY_BUILD_STATISTICS "Build the statistics internals" OFF)
+ 
+ set(LIBPOLY_VERSION_MAJOR 0)
+ set(LIBPOLY_VERSION_MINOR 1)
+-set(LIBPOLY_VERSION_PATCH 9)
++set(LIBPOLY_VERSION_PATCH 10)
+ set(LIBPOLY_VERSION ${LIBPOLY_VERSION_MAJOR}.${LIBPOLY_VERSION_MINOR}.${LIBPOLY_VERSION_PATCH})
+ 
+ if(APPLE)
