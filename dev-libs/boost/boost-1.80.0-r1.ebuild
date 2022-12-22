@@ -17,7 +17,7 @@ S="${WORKDIR}/${PN}_${MY_PV}"
 LICENSE="Boost-1.0"
 SLOT="0/${PV}" # ${PV} instead of the major version due to bug 486122
 KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~loong ~m68k ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="bzip2 context debug doc icu lzma +nls mpi numpy python static-libs tools zlib zstd"
+IUSE="bzip2 context debug doc icu lzma +nls mpi numpy pic python static-libs tools zlib zstd"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 # the tests will never fail because these are not intended as sanity
 # tests at all. They are more a way for upstream to check their own code
@@ -136,6 +136,11 @@ src_prepare() {
 }
 
 ejam() {
+	if use pic; then
+		CFLAGS+=" -fPIC -DPIC"
+		CXXFLAGS+=" -fPIC -DPIC"
+	fi
+
 	create_user-config.jam
 
 	local b2_opts=( "--user-config=${BUILD_DIR}/user-config.jam" )
