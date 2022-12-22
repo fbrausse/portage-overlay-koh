@@ -20,7 +20,7 @@ S="${WORKDIR}/${MY_P}"
 LICENSE="NCSA-HDF"
 SLOT="0/${PV%%_p*}"
 KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~riscv ~s390 sparc x86 ~amd64-linux ~x86-linux"
-IUSE="cxx debug examples fortran +hl mpi static-libs szip threads unsupported zlib"
+IUSE="cxx debug examples fortran +hl mpi pic static-libs szip threads unsupported zlib"
 REQUIRED_USE="
 	!unsupported? (
 		cxx? ( !mpi ) mpi? ( !cxx )
@@ -99,6 +99,7 @@ src_configure() {
 		$(use_enable mpi parallel) \
 		$(use_enable threads threadsafe) \
 		$(use_enable unsupported) \
+		$(use_with pic) \
 		$(use_with szip szlib) \
 		$(use_with threads pthread) \
 		$(use_with zlib)
