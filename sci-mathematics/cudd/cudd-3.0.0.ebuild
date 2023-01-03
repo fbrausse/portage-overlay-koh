@@ -1,27 +1,30 @@
-# Copyright 2017 Franz Brausse <brausse@informatik.uni-trier.de>
-#
+# Copyright 1999-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-DESCRIPTION="The CUDD package is a package written in C for the manipulation of decision diagrams."
-HOMEPAGE="https://github.com/ivmai/${PN}"
-SRC_URI="https://github.com/ivmai/${PN}/archive/refs/tags/${P}.tar.gz"
+DESCRIPTION="Colorado University binary Decision Diagram library"
+HOMEPAGE="https://davidkebo.com/cudd/"
+SRC_URI="https://davidkebo.com/source/cudd_versions/${P}.tar.gz"
 
-LICENSE="BSD-3"
-SLOT="0"
-KEYWORDS="~amd64"
+LICENSE="BSD"
+SLOT="0/${PV}"
+KEYWORDS="~amd64 ~x86"
 IUSE="pic static-libs"
 
-#DEPEND="dev-libs/gmp"
-
-src_unpack() {
-	default
-	mv -v ${WORKDIR}/{${PN}-,}${P}
+src_configure() {
+	local myconf=(
+		--enable-dddmp
+		--enable-obj
+		--enable-shared
+		--enable-static=$(usex static-libs yes no)
+		$(use_with pic)
+	)
+	econf ${myconf[@]}
 }
 
-src_configure() {
-	econf \
-		$(use_with pic) \
-		--enable-static=$(usex static-libs yes no) \
-		--enable-shared=yes
+src_install() {
+	default
+
+	find "${ED}" -name "*.la" -type f -delete || die
 }
