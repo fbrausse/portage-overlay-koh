@@ -5,7 +5,7 @@ EAPI=7
 
 # ninja doesn't like "-lcblas" so using make.
 CMAKE_MAKEFILE_GENERATOR="emake"
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{7..11} )
 inherit cmake python-any-r1
 
 DESCRIPTION="Fast Library for Number Theory"
