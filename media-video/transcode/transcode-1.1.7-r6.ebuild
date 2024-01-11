@@ -86,7 +86,7 @@ src_prepare() {
 	fi
 
 	if has_version '>=media-video/ffmpeg-4' ;  then
-		PATCHES+=( "${WORKDIR}"/${P}-ffmpeg4.patch )
+		PATCHES+=( "${FILESDIR}"/${P}-ffmpeg4.patch )
 	fi
 
 	default
