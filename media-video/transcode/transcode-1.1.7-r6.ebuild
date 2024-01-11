@@ -7,9 +7,8 @@ inherit autotools
 
 DESCRIPTION="Utilities for transcoding video and audio codecs in different containers"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
-SRC_URI="https://www.bitbucket.org/france/${PN}-tcforge/downloads/${P}.tar.bz2
-	https://dev.gentoo.org/~mgorny/dist/${P}-patchset.tar.bz2
-	https://dev.gentoo.org/~whissi/dist/${PN}/${PN}-1.1.7-ffmpeg4.patch.xz"
+SRC_URI="https://anduin.linuxfromscratch.org/BLFS/transcode/${P}.tar.bz2
+	https://dev.gentoo.org/~mgorny/dist/${P}-patchset.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,7 +24,7 @@ REQUIRED_USE="
 
 # <ffmpeg-5 dep for bug #831482
 RDEPEND="
-	<media-video/ffmpeg-5:=
+	media-video/ffmpeg:=
 	a52? ( media-libs/a52dec )
 	aac? ( media-libs/faac )
 	alsa? ( media-libs/alsa-lib )
