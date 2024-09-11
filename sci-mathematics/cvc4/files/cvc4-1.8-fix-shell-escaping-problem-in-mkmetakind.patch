@@ -1,0 +1,63 @@
+From 374ff0cd1206a6fe44917a17e65492b319ea3c23 Mon Sep 17 00:00:00 2001
+From: root <root@cthulhu.fritz.box>
+Date: Wed, 11 Sep 2024 13:57:03 +0200
+Subject: [PATCH] fix shell escaping problem in mkmetakind
+
+---
+ src/expr/mkmetakind | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/expr/mkmetakind b/src/expr/mkmetakind
+index e2a733e..f3e0bf2 100755
+--- a/src/expr/mkmetakind
++++ b/src/expr/mkmetakind
+@@ -227,7 +227,7 @@ function constant {
+   register_metakind CONSTANT "$1" 0
+   metakind_getConst_decls="${metakind_getConst_decls}
+ template <>
+-$2 const& NodeValue::getConst< $2 >() const;
++$2 const\& NodeValue::getConst< $2 >() const;
+ "
+   metakind_constantMaps_decls="${metakind_constantMaps_decls}
+ template <>
+@@ -249,7 +249,7 @@
+ #pragma GCC diagnostic ignored \"-Wstrict-aliasing\"
+ 
+ template <>
+-$2 const& NodeValue::getConst< $2 >() const {
++$2 const\& NodeValue::getConst< $2 >() const {
+   AssertArgument(getKind() == ::CVC4::kind::$1, *this,
+                  \"Improper kind for getConst<$2>()\");
+   // To support non-inlined CONSTANT-kinded NodeValues (those that are
+diff '--color=auto' -urw a/src/expr/mkexpr b/src/expr/mkexpr
+--- a/src/expr/mkexpr	2024-09-11 14:03:37.880922713 +0200
++++ b/src/expr/mkexpr	2024-09-11 14:03:29.832825088 +0200
+@@ -219,22 +219,22 @@
+ 
+   mkConst_instantiations="${mkConst_instantiations}
+ #line $lineno \"$kf\"
+-template <> Expr ExprManager::mkConst($2 const& val);
++template <> Expr ExprManager::mkConst($2 const\& val);
+ "
+   mkConst_implementations="${mkConst_implementations}
+ #line $lineno \"$kf\"
+-template <> Expr ExprManager::mkConst($2 const& val) {
++template <> Expr ExprManager::mkConst($2 const\& val) {
+ #line $lineno \"$kf\"
+   return Expr(this, new Node(d_nodeManager->mkConst< $2 >(val)));
+ }
+ "
+   getConst_instantiations="${getConst_instantiations}
+ #line $lineno \"$kf\"
+-template <> $2 const & Expr::getConst< $2 >() const;
++template <> $2 const \& Expr::getConst< $2 >() const;
+ "
+   getConst_implementations="${getConst_implementations}
+ #line $lineno \"$kf\"
+-template <> $2 const & Expr::getConst() const {
++template <> $2 const \& Expr::getConst() const {
+ #line $lineno \"$kf\"
+   PrettyCheckArgument(getKind() == ::CVC4::kind::$1, *this, \"Improper kind for getConst<$2>()\");
+ #line $lineno \"$kf\"
+-- 
+2.44.2

@@ -1,0 +1,49 @@
+From 2a7c60fd0004c8507390490283063d898c442fd9 Mon Sep 17 00:00:00 2001
+From: root <root@cthulhu.fritz.box>
+Date: Wed, 11 Sep 2024 13:28:43 +0200
+Subject: [PATCH] replace python toml with tomllib
+
+---
+ src/options/CMakeLists.txt | 2 +-
+ src/options/mkoptions.py   | 5 +++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/options/CMakeLists.txt b/src/options/CMakeLists.txt
+index 46bd171..ecf4f7c 100644
+--- a/src/options/CMakeLists.txt
++++ b/src/options/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ # Check if the toml Python module is installed.
+ execute_process(
+   COMMAND
+-  ${PYTHON_EXECUTABLE} -c "import toml"
++  ${PYTHON_EXECUTABLE} -c "import tomllib"
+   RESULT_VARIABLE
+     RET_TOML
+   ERROR_QUIET
+diff --git a/src/options/mkoptions.py b/src/options/mkoptions.py
+index d9bc1a0..1506330 100755
+--- a/src/options/mkoptions.py
++++ b/src/options/mkoptions.py
+@@ -46,7 +46,7 @@ import os
+ import re
+ import sys
+ import textwrap
+-import toml
++import tomllib
+ 
+ ### Allowed attributes for module/option/alias
+ 
+@@ -1309,7 +1309,8 @@ def mkoptions_main():
+     # Parse files, check attributes and create module/option objects
+     modules = []
+     for filename in filenames:
+-        module = parse_module(filename, toml.load(filename))
++        with open(filename, 'rb') as f:
++            module = parse_module(filename, tomllib.load(f))
+ 
+         # Check if long options are valid and unique.  First populate
+         # g_long_cache with option.long and --no- alternatives if
+-- 
+2.44.2
+
