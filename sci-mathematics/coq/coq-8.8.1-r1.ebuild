@@ -1,16 +1,16 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="8"
 
-inherit eutils multilib
+inherit multilib
 
 MY_PV=${PV/_p/pl}
 MY_P=${PN}-${MY_PV}
 
 DESCRIPTION="Proof assistant written in O'Caml"
 HOMEPAGE="http://coq.inria.fr/"
-SRC_URI="https://github.com/coq/coq/archive/V8.8.0.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/coq/coq/archive/V${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0/${PV}"
@@ -27,8 +27,8 @@ DEPEND="${RDEPEND}
 		media-libs/netpbm[png,zlib]
 		virtual/latex-base
 		dev-tex/hevea
-		dev-tex/xcolor
 		dev-texlive/texlive-pictures
+		dev-texlive/texlive-latexrecommended
 		|| ( dev-texlive/texlive-mathscience dev-texlive/texlive-mathextra )
 		dev-texlive/texlive-latexextra
 		media-gfx/xfig

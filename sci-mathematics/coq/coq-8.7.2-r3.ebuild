@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="8"
 
-inherit eutils multilib
+inherit multilib
 
 MY_PV=${PV/_p/pl}
 MY_P=${PN}-${MY_PV}
